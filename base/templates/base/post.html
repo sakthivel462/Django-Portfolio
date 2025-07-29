@@ -1,0 +1,91 @@
+
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+	img{
+		max-width: 100%;
+		object-fit: cover;
+	}
+
+	.featured_image{
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	.post-container{
+			width: 900px;
+			margin: 0 auto;
+			padding-top: 20px;
+			padding-bottom: 20px;
+	}
+
+	.comments-wrapper{
+		margin-top: 50px;
+		padding: 10px;
+		border:1px solid var(--borderColor);
+		-webkit-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+		-moz-box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+		box-shadow: -1px 1px 3px -1px rgba(0,0,0,0.75);
+	}
+
+	.comment{
+		display: flex;
+		padding: 15px;
+	}
+
+	.comment-author{
+		font-size: 14px;
+		font-weight: 700;
+		color: rgb(30, 174, 219) !important;
+		margin: 2px;
+	}
+
+	.author-pic{
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		margin-right: 10px;
+	}
+
+	.comment-body{
+
+		font-size: 14px;
+	}
+
+	@media screen and (max-width: 900px){
+		.post-container{
+			width: 95%;
+		}
+	}
+</style>
+
+<div class="post-container">
+
+	<a class="btn btn-sm btn-primary" href="{% url 'home' %}">Back to Home < </a>
+
+	<img class="featured_image" src="{{post.image.url}}">
+    <h6> Tags : </h6>
+	{% for tag in post.tags.all %}
+		<span class="tag">{{tag}}</span>
+	{% endfor %}
+    <h6>live link : <a href={{post.link}}> {{post.link}} <a/></h6>
+	<hr>
+
+	<h1>{{post.title}}</h1>
+	<h4>{{post.sub_headline}}</h4>
+    <p>Featured Images :</p>
+    <img class="featured_image" src="{{post.featured_image_1.url}}">
+	<p>{{post.exp_f1|safe}}</p>
+    <img class="featured_image" src="{{post.featured_image_2.url}}">
+	<p>{{post.exp_f2|safe}}</p>
+    <img class="featured_image" src="{{post.featured_image_3.url}}">
+	<p>{{post.exp_f3|safe}}</p>
+	<br>
+
+	<p>{{post.description|safe}}</p>
+
+</div>
+
+{% endblock content %}
